@@ -1,19 +1,38 @@
-# FHEVM React Template
+# Secret TGE – Privacy-Preserving TGE Prediction dApp
 
-A minimal React frontend template for building FHEVM-enabled decentralized applications (dApps). This template provides a simple development interface for interacting with FHEVM smart contracts, specifically the `FHECounter.sol` contract.
+**FHESecretTGE** is a high-security dApp that allows users to predict the **Token Generation Event (TGE)** date of a project without revealing any sensitive information. All predictions are **encrypted using Fully Homomorphic Encryption (FHE)**, enabling secure on-chain storage while allowing users to update or decrypt their predictions when needed.
 
-## 🚀 What is FHEVM?
+---
 
-FHEVM (Fully Homomorphic Encryption Virtual Machine) enables computation on encrypted data directly on Ethereum. This template demonstrates how to build dApps that can perform computations while keeping data private.
+## 🔑 Key Features
 
-## ✨ Features
+- 🕵️ **Anonymous Predictions**: Users submit predictions without revealing the actual values.  
+- 🔄 **Update Predictions**: Users can modify their predictions anytime.  
+- 🔓 **Decrypt Predictions**: Only the user or the contract can decrypt the stored encrypted data.  
+- 📊 **High Security**: FHE ensures sensitive data is processed safely on-chain.  
 
-- **🔐 FHEVM Integration**: Built-in support for fully homomorphic encryption
-- **⚛️ React + Next.js**: Modern, performant frontend framework
-- **🎨 Tailwind CSS**: Utility-first styling for rapid UI development
-- **🔗 RainbowKit**: Seamless wallet connection and management
-- **🌐 Multi-Network Support**: Works on both Sepolia testnet and local Hardhat node
-- **📦 Monorepo Structure**: Organized packages for SDK, contracts, and frontend
+---
+
+## 🛠 Technology Stack
+
+- 🧩 **Solidity** – Smart contract language for Ethereum.  
+- 🔗 **FHEVM (Fully Homomorphic Ethereum Virtual Machine)** – For privacy-preserving computations.  
+- 🌐 **Next.js / React** – Frontend framework for the dApp UI.  
+- 🪙 **Ethereum Sepolia Testnet** – Testnet for deploying smart contracts.  
+- 🎨 **TailwindCSS** – Styling and responsive design.  
+- ⚡ **Framer Motion** – Smooth animations for UI interactions.  
+
+---
+
+## 🚀 How It Works
+
+1. Connect your Ethereum wallet using RainbowKit or any supported wallet.  
+2. Select your predicted TGE date using the calendar picker.  
+3. Submit your encrypted prediction to the smart contract.  
+4. Optionally, update your prediction anytime.  
+5. When allowed, decrypt your prediction to verify your stored value.  
+
+---
 
 ## 📋 Prerequinextjss
 
@@ -31,7 +50,7 @@ Before you begin, ensure you have:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd fhevm-react-template
+cd secret-tge
 
 # Initialize submodules (includes fhevm-hardhat-template)
 git submodule update --init --recursive
@@ -124,7 +143,7 @@ For more details, see the [MetaMask development guide](https://docs.metamask.io/
 This template uses a monorepo structure with three main packages:
 
 ```
-fhevm-react-template/
+secret-tge/
 ├── packages/
 │   ├── fhevm-hardhat-template/    # Smart contracts & deployment
 │   ├── fhevm-sdk/                 # FHEVM SDK package
@@ -134,8 +153,8 @@ fhevm-react-template/
 
 ### Key Components
 
-#### 🔗 FHEVM Integration (`packages/nextjs/hooks/fhecounter-example/`)
-- **`useFHECounterWagmi.tsx`**: Example hook demonstrating FHEVM contract interaction
+#### 🔗 FHEVM Integration (`packages/nextjs/hooks`)
+- **`useSecretTGE.ts`**: Example hook demonstrating FHEVM contract interaction
 - Essential hooks for FHEVM-enabled smart contract communication
 - Easily copyable to any FHEVM + React project
 
