@@ -26,16 +26,20 @@ import type {
 export interface FHESecretTGEInterface extends Interface {
   getFunction(
     nameOrSignature:
+      | "confidentialProtocolId"
       | "encryptedPredictionOf"
       | "grantDecryption"
       | "hasPrediction"
       | "predictionTimestamp"
-      | "protocolId"
       | "submitPrediction"
   ): FunctionFragment;
 
   getEvent(nameOrSignatureOrTopic: "PredictionSubmitted"): EventFragment;
 
+  encodeFunctionData(
+    functionFragment: "confidentialProtocolId",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "encryptedPredictionOf",
     values: [AddressLike]
@@ -51,10 +55,6 @@ export interface FHESecretTGEInterface extends Interface {
   encodeFunctionData(
     functionFragment: "predictionTimestamp",
     values: [AddressLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "protocolId",
-    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "submitPrediction",
@@ -62,6 +62,10 @@ export interface FHESecretTGEInterface extends Interface {
   ): string;
 
   decodeFunctionResult(
+    functionFragment: "confidentialProtocolId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "encryptedPredictionOf",
     data: BytesLike
   ): Result;
@@ -77,7 +81,6 @@ export interface FHESecretTGEInterface extends Interface {
     functionFragment: "predictionTimestamp",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "protocolId", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "submitPrediction",
     data: BytesLike
@@ -140,6 +143,8 @@ export interface FHESecretTGE extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
+  confidentialProtocolId: TypedContractMethod<[], [bigint], "view">;
+
   encryptedPredictionOf: TypedContractMethod<
     [user: AddressLike],
     [string],
@@ -160,8 +165,6 @@ export interface FHESecretTGE extends BaseContract {
     "view"
   >;
 
-  protocolId: TypedContractMethod<[], [bigint], "view">;
-
   submitPrediction: TypedContractMethod<
     [encryptedPrediction: BytesLike, proof: BytesLike],
     [void],
@@ -172,6 +175,9 @@ export interface FHESecretTGE extends BaseContract {
     key: string | FunctionFragment
   ): T;
 
+  getFunction(
+    nameOrSignature: "confidentialProtocolId"
+  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "encryptedPredictionOf"
   ): TypedContractMethod<[user: AddressLike], [string], "view">;
@@ -184,9 +190,6 @@ export interface FHESecretTGE extends BaseContract {
   getFunction(
     nameOrSignature: "predictionTimestamp"
   ): TypedContractMethod<[user: AddressLike], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "protocolId"
-  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "submitPrediction"
   ): TypedContractMethod<

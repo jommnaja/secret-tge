@@ -2,7 +2,7 @@
 pragma solidity ^0.8.24;
 
 import {FHE, euint32, externalEuint32} from "@fhevm/solidity/lib/FHE.sol";
-import {SepoliaConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
+import {ZamaEthereumConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
 
 /**
  * @title FHESecretTGE
@@ -10,7 +10,7 @@ import {SepoliaConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
  *         Users submit encrypted predictions and may update them anytime. Contract stores only encrypted data.
  * @dev Uses FHE primitives for ingesting external encrypted values and allowing controlled decryption.
  */
-contract FHESecretTGE is SepoliaConfig {
+contract FHESecretTGE is ZamaEthereumConfig {
     /// @dev encrypted prediction per user
     mapping(address => euint32) private _encPredictions;
 
